@@ -2,10 +2,11 @@
 Author - Isaac Richards
 Date - 15JUL23
 Assignment - Object Oriented Math Library Program
+Assignment Requirements:
+    Pointer - Function.h contains the class that stores a pointer to a function.  Menu.cpp contains a vector of Function pointers.
 Description - This program is an example program to demonstrate the use of the ScoresMathLibrary.
     It uses a simple menu to allow the user to select which function they would like to use.
     Menu.cpp contains the vector of Function objects that are available to the user.
-
 */
 
 #include <iostream>
@@ -18,6 +19,9 @@ using namespace std;
 bool running = true;
 
 int main() {
+    print_scores();
+    cout << endl;
+
     while (running) {
         cout << "What would you like to do:" << endl;
 

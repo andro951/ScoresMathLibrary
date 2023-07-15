@@ -180,6 +180,7 @@ bool is_float(const std::string& str) {
 
     bool is_negative = (str[0] == '-');
     bool has_decimal = false;
+    int digit_count = 0;
     for (size_t i = is_negative ? 1 : 0; i < str.length(); i++) {
         if (str[i] == '.') {
             if (has_decimal)
@@ -190,9 +191,13 @@ bool is_float(const std::string& str) {
         else if (!std::isdigit(str[i])) {
             return false;
         }
+        else {
+			digit_count++;
+        }
     }
 
-    return true;
+    //Prevent strings like "." or "-." from being considered floats
+    return digit_count > 0;
 }
 
 int get_integer_input_in_range(const string& prompt, int range_min, int range_max) {
@@ -252,9 +257,9 @@ void stop_running() {
 #pragma endregion
 
 vector<Function> functions = {
-    Function("Enter Scores", enter_scores),
-    Function("Print Scores", print_scores),
-    Function("Clear Scores", clear_scores),
-    Function("Score Stats", score_stats),
-    Function("Quit program", stop_running)
+    Function("Enter Scores", *enter_scores),
+    Function("Print Scores", *print_scores),
+    Function("Clear Scores", *clear_scores),
+    Function("Score Stats", *score_stats),
+    Function("Quit program", *stop_running)
 };
